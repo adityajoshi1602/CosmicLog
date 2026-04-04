@@ -11,37 +11,36 @@ const postSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        trim: true,
-        minlength: 3,
-        maxlength: 150
+        trim: true
     },
 
     body: {
         type: String,
         required: true,
-        trim: true,
-        minlength: 10,
-        maxlength: 5000
+        trim: true
     },
 
     celestialObject: {
         type: String,
         required: true,
         trim: true,
-        lowercase: true,
-        index: true
+        lowercase: true
     },
 
     observedAt: {
         type: Date,
-        required: true,
-        index: true
+        required: true
     },
 
     location: {
         type: String,
         required: true,
         trim: true
+    },
+
+    image: {
+        type: String,
+        required: true
     },
 
     reactionCounts: {
@@ -52,6 +51,4 @@ const postSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-const postmodel = mongoose.model('post', postSchema)
-
-module.exports=postmodel
+module.exports = mongoose.model('Post', postSchema);
