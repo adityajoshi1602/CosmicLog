@@ -5,11 +5,11 @@ const ik = new ImageKit({
     privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
 })
 
-async function uploadfile(buffer) {
+async function uploadfile(file) {
     try {
         const res = await ik.files.upload({
-            file: buffer.toString("base64"),
-            fileName: Date.now() + ".jpg"
+            file: file.buffer.toString("base64"),
+            fileName: Date.now() + "-" + file.originalname 
         })
 
         return res

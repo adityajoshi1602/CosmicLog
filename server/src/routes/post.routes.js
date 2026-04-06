@@ -7,7 +7,7 @@ const multer = require('multer')
 
 const upload = multer({ storage: multer.memoryStorage() })
 
-router.get('/', authMiddleware, getPosts);
+router.get('/', getPosts);
 
 router.post('/create', authMiddleware, upload.single('image'), createPost);
 router.post('/:id/react', authMiddleware, reactToPost);

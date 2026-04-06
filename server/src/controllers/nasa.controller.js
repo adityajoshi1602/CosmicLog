@@ -22,4 +22,28 @@ async function getApod(req, res) {
     }
 }
 
-module.exports = { getApod };
+async function getTrending(req, res) {
+    try {
+        const hotTopics = [
+            'james webb', 'black hole', 'mars rover', 'nebula',
+            'supernova', 'galaxy cluster', 'exoplanet', 'aurora'
+        ];
+
+        const currentTrend = hotTopics[Math.floor(Math.random() * hotTopics.length)];
+
+        const response = await axios.get(`https://images-api.nasa.gov/search?q=${currentTrend}&media_type=image`);
+
+        const items = response.data.collection.items.slice(0, 12);
+
+        res.status(200).json({
+            topic: currentTrend,
+            items: items
+        });
+
+    } catch (error) {
+        console.error("Error fetching trending data:", error);
+        res.status(500).json({ message: "Failed to fetch trending cosmos data" });
+    }
+};
+
+module.exports = { getApod, getTrending };
